@@ -30,9 +30,15 @@
       <uap:VisualElements DisplayName="Ubuntu on Windows"
                           Description="Ubuntu bash shell for Windows"
                           BackgroundColor="#E95420"
-                          Square150x150Logo="images/icon.png"
-                          Square44x44Logo="images/icon.png"
-      />
+                          Square150x150Logo="images\icon.png"
+                          Square44x44Logo="images\icon.png">
+        <uap:DefaultTile Wide310x150Logo="images\widetile310.png"
+			 Square310x310Logo="images\tile310.png"
+			 Square71x71Logo="images\tile71.png"
+			 ShortName="Ubuntu"
+			 >
+        </uap:DefaultTile>
+      </uap:VisualElements>
       <Extensions>
         <uap3:Extension Category="windows.appExecutionAlias" Executable="ubuntu.exe" EntryPoint="Windows.FullTrustApplication">
           <uap3:AppExecutionAlias>
