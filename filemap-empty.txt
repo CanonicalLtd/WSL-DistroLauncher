@@ -3,10 +3,9 @@
 "ResourceId"                            "English"
 
 [Files]
+"images\logo.png" "images\logo.png"
 "images\icon.png" "images\icon.png"
 "images\icon.ico" "images\icon.ico"
-"images\tile310.png" "images\tile310.png"
-"images\tile71.png" "images\tile71.png"
 "images\widetile310.png" "images\widetile310.png"
 
 "x64\Release\ubuntu.exe" "ubuntu.exe"
