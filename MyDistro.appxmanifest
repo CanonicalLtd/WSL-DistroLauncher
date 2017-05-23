@@ -6,13 +6,13 @@
          xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
          IgnorableNamespaces="uap uap2 uap3 rescap desktop">
-  <Identity Name="DistroName.1.0"
-            Version="1.0.0.0"
-            Publisher="CN=DistroOwner"
+  <Identity Name="CanonicalGroupLimited.UbuntuonWindows"
+            Version="16.04.5.0"
+            Publisher="CN=23596F84-C3EA-4CD8-A7DF-550DCE37BCD0"
             ProcessorArchitecture="x64" />
   <Properties>
-    <DisplayName>My Linux Distro</DisplayName>
-    <PublisherDisplayName>DistroOwner</PublisherDisplayName>
+    <DisplayName>Ubuntu on Windows</DisplayName>
+    <PublisherDisplayName>Canonical Group Limited</PublisherDisplayName>
     <Logo>images/icon.png</Logo>
   </Properties>
   <Resources>
@@ -26,17 +26,17 @@
   </Capabilities>
 
   <Applications>
-    <Application Id="mydistro" Executable="mydistro.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="My Linux Distro"
-                          Description="My Own Distro Launcher"
-                          BackgroundColor="#464646"
+    <Application Id="ubuntu" Executable="ubuntu.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="Ubuntu on Windows"
+                          Description="Ubuntu bash shell for Windows"
+                          BackgroundColor="#E95420"
                           Square150x150Logo="images/icon.png"
                           Square44x44Logo="images/icon.png"
       />
       <Extensions>
-        <uap3:Extension Category="windows.appExecutionAlias" Executable="mydistro.exe" EntryPoint="Windows.FullTrustApplication">
+        <uap3:Extension Category="windows.appExecutionAlias" Executable="ubuntu.exe" EntryPoint="Windows.FullTrustApplication">
           <uap3:AppExecutionAlias>
-            <desktop:ExecutionAlias Alias="mydistro.exe" />
+            <desktop:ExecutionAlias Alias="ubuntu.exe" />
           </uap3:AppExecutionAlias>
         </uap3:Extension>
       </Extensions>
