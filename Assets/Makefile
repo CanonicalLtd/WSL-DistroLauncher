@@ -49,4 +49,4 @@ logo: cof_orange_hex.svg
 	inkscape -f '$<' -D -w 32 -e Square44x44Logo.altform-unplated_targetsize-32.png
 	inkscape -f '$<' -D -w 48 -e Square44x44Logo.altform-unplated_targetsize-48.png
 	inkscape -f '$<' -D -w 256 -e Square44x44Logo.altform-unplated_targetsize-256.png
-	inkscape -f '$<' -D -w 50 -b white -e StoreLogo.png
+	inkscape -f '$<' -D -w 100 -b white -e StoreLogo.png
