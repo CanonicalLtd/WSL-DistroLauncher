@@ -13,7 +13,7 @@
   <Properties>
     <DisplayName>Ubuntu</DisplayName>
     <PublisherDisplayName>Canonical Group Limited</PublisherDisplayName>
-    <Logo>images/logo.png</Logo>
+    <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Resources>
     <Resource Language="EN-US"/>

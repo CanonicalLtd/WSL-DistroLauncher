@@ -13,6 +13,7 @@
 "Assets\SmallTile.scale-150.png" "Assets\SmallTile.scale-150.png"
 "Assets\SmallTile.scale-200.png" "Assets\SmallTile.scale-200.png"
 "Assets\SmallTile.scale-400.png" "Assets\SmallTile.scale-400.png"
+"Assets\StoreLogo.png" "Assets\StoreLogo.png"
 "Assets\Square150x150Logo.scale-100.png" "Assets\Square150x150Logo.scale-100.png"
 "Assets\Square150x150Logo.scale-125.png" "Assets\Square150x150Logo.scale-125.png"
 "Assets\Square150x150Logo.scale-150.png" "Assets\Square150x150Logo.scale-150.png"
@@ -42,7 +43,6 @@
 "resources.pri" "resources.pri"
 
 "images\icon.ico" "images\icon.ico"
-"images\logo.png" "images\logo.png"
 
 "x64\Release\ubuntu.exe" "ubuntu.exe"
 "x64\Release\ubuntu.pdb" "ubuntu.pdb"
