@@ -27,13 +27,13 @@ smalltile: smalltile.svg
 	inkscape -f '$<' -C -w 107 -e SmallTile.scale-150.png
 	inkscape -f '$<' -C -w 142 -e SmallTile.scale-200.png
 	inkscape -f '$<' -C -w 284 -e SmallTile.scale-400.png
-
-logo: cof_orange_hex.svg
 	inkscape -f '$<' -C -w 150 -e Square150x150Logo.scale-100.png
 	inkscape -f '$<' -C -w 188 -e Square150x150Logo.scale-125.png
 	inkscape -f '$<' -C -w 225 -e Square150x150Logo.scale-150.png
 	inkscape -f '$<' -C -w 300 -e Square150x150Logo.scale-200.png
 	inkscape -f '$<' -C -w 600 -e Square150x150Logo.scale-400.png
+
+logo: cof_orange_hex.svg
 	inkscape -f '$<' -C -w 44 -e Square44x44Logo.scale-100.png
 	inkscape -f '$<' -C -w 55 -e Square44x44Logo.scale-125.png
 	inkscape -f '$<' -C -w 66 -e Square44x44Logo.scale-150.png
