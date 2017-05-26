@@ -6,8 +6,8 @@ call build clean rel
 
 makepri new /pr . /mn MyDistro.appxmanifest /of resources.pri /cf priconfig.xml /o
 
-set _OWNER=Ubuntu
-set _AppxName=Ubuntu
+set _OWNER=Xenial
+set _AppxName=Xenial
 set _FilemapName=filemap.txt
 
 set _KITS=()
@@ -46,8 +46,8 @@ if not exist "%_OWNER%".pfx (
     echo %_KITS%\CertMgr /add %_OWNER%.cer /s /r localMachine root 
 )
 
-%_KITS%\makeappx.exe pack /m MyDistro.appxmanifest /f filemap.txt /p Ubuntu.appx /o /l
-%_KITS%\signtool sign /v /f "%_OWNER%".pfx /fd SHA256 Ubuntu.appx
+%_KITS%\makeappx.exe pack /m MyDistro.appxmanifest /f filemap.txt /p Xenial.appx /o /l
+%_KITS%\signtool sign /v /f "%_OWNER%".pfx /fd SHA256 Xenial.appx
 
 @rem You will need to run this once before you can sideload your appx on a machine.
 @rem %_KITS%\CertMgr /add %_OWNER%.cer /s /r localMachine root

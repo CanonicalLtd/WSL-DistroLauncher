@@ -44,7 +44,6 @@
 
 "images\icon.ico" "images\icon.ico"
 
-"x64\Release\ubuntu.exe" "ubuntu.exe"
-"x64\Release\ubuntu.pdb" "ubuntu.pdb"
+"x64\Release\xenial.exe" "xenial.exe"
 
 "install.tar.gz" "install.tar.gz"

@@ -29,14 +29,14 @@ HRESULT MyLinuxDistroLauncher::Initialize()
     // Set the name of your distro. This name will be used for registering your
     // distro with WSL, so make it unique to this version of your distro.
     // This name MUST remain constant across upgrades to your app.
-    this->_myName= L"Ubuntu";
+    this->_myName= L"Xenial";
     
     // Completely optional - Set the console window title.
     // For install, this will be the title of the window that appears, instead
     // of the full path to the app 
     //  ex C:\Program Files\WindowsApps\my.linuxdistro_1.0.0.0_x64__8b0vtwsf57ycy\DistroInstaller.exe
     // (bash will usually overwrite this when it starts)
-    SetConsoleTitleW(L"Ubuntu");
+    SetConsoleTitleW(L"Xenial");
 
     return S_OK;
 }
