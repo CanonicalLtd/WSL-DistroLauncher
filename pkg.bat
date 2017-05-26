@@ -9,6 +9,7 @@ makepri new /pr . /mn MyDistro.appxmanifest /of resources.pri /cf priconfig.xml 
 set _OWNER=Xenial
 set _AppxName=Xenial
 set _FilemapName=filemap.txt
+set _Version=20170525
 
 set _KITS=()
 
@@ -46,8 +47,8 @@ if not exist "%_OWNER%".pfx (
     echo %_KITS%\CertMgr /add %_OWNER%.cer /s /r localMachine root 
 )
 
-%_KITS%\makeappx.exe pack /m MyDistro.appxmanifest /f filemap.txt /p Xenial.appx /o /l
-%_KITS%\signtool sign /v /f "%_OWNER%".pfx /fd SHA256 Xenial.appx
+%_KITS%\makeappx.exe pack /m MyDistro.appxmanifest /f filemap.txt /p Xenial."%_Version%".appx /o /l
+%_KITS%\signtool sign /v /f "%_OWNER%".pfx /fd SHA256 Xenial."%_Version%".appx
 
 @rem You will need to run this once before you can sideload your appx on a machine.
 @rem %_KITS%\CertMgr /add %_OWNER%.cer /s /r localMachine root
