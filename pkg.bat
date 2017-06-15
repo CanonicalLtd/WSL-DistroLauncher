@@ -9,7 +9,7 @@ makepri new /pr . /mn MyDistro.appxmanifest /of resources.pri /cf priconfig.xml 
 set _OWNER=Ubuntu
 set _AppxName=Ubuntu
 set _FilemapName=filemap.txt
-set _Version=20170525
+set _Version=20170614
 
 set _KITS=()
 
