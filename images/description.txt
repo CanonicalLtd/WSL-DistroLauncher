@@ -37,3 +37,25 @@ https://www.ubuntu.com/
 
 Privacy policy URL:
 https://www.ubuntu.com/legal/terms-and-policies/privacy-policy
+
+Certification notes:
+
+
+
+1) Open PowerShell as Administrator
+2) Execute
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+3) Reboot
+NB! do not launch "bash"
+4) Install the app
+5) Use Start to launch "Ubuntu"
+6) Expected results:
+You should see message "Installing, this may take a few minutes..."
+Then prompt to setup unix account (use any ascii name / password)
+Then Ubuntu prompt will launch
+Try running a few commands e.g.:
+echo Hello World
+uname -a
+sudo apt update
+
+(Last command will prompt for the unix account password)
