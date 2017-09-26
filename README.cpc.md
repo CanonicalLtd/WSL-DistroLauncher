@@ -70,3 +70,6 @@ these restrictions is `RRRR.YYYY.MMDD.0`, where:
 - `MMDD` is the month and day of the serial (with any leading zeros removed).
 - As we only expect to publish a single appx per day, any sub-serial version
   numbers are dropped.
+
+When updating the version, one must update both the `_Version` value in
+`pkg.bat` and the `Identity.Version` value in `MyDistro.appxmanifest`.
