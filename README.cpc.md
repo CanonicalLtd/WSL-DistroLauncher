@@ -56,3 +56,17 @@ Using appx on Ubuntu (fb-util-for-appx) results in packages that
 Windows rejects installing =( Therefore the code at
 https://code.launchpad.net/~cloudware/cloudware/+git/cpc-wsl is a bit
 pointless at the moment.
+
+## Versioning
+
+The build process and the Windows Store impose some restrictions on the version
+number. It must end with a `.0` component and leading zeros must be stripped
+from individual components. Our versioning scheme which is compatible with
+these restrictions is `RRRR.YYYY.MMDD.0`, where:
+
+- `RRRR` is the release version with the `.` separator removed. For example,
+  16.04 (xenial) is `1604`.
+- `YYYY` is the year of the serial.
+- `MMDD` is the month and day of the serial (with any leading zeros removed).
+- As we only expect to publish a single appx per day, any sub-serial version
+  numbers are dropped.
