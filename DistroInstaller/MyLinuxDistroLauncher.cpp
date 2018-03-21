@@ -194,7 +194,7 @@ HRESULT MyLinuxDistroLauncher::_CreateUserAccount(const std::wstring& userName)
 // - true iff the user already exists.
 bool MyLinuxDistroLauncher::_DoesUserExist(const wstring & userName)
 {
-    wstring bashCommand = L"/usr/bin/id " + userName + L" &> /dev/null";
+    wstring bashCommand = L"/usr/bin/id " + userName + L" > /dev/null 2>&1";
 
     bool userExists = false;
     DWORD returnValue = 0;
@@ -357,7 +357,7 @@ HRESULT MyLinuxDistroLauncher::_SetDefaultUser(const std::wstring& userName)
 // - An HRESULT with the failure code, or S_OK if it succeeded.
 HRESULT MyLinuxDistroLauncher::_DeleteUser(const std::wstring& userName)
 {
-    wstring bashCommand = L"/usr/sbin/deluser " + userName + L" &> /dev/null";
+    wstring bashCommand = L"/usr/sbin/deluser " + userName + L" > /dev/null 2>&1";
     wstring bashCommandFormatted = _FormatBashCommandLine(bashCommand);
     DWORD returnValue = 0;
     return wslApi.WslLaunchInteractive(_myName, bashCommandFormatted.c_str(), true, &returnValue);
