@@ -54,3 +54,8 @@ logo: cof_orange_hex.svg
 	inkscape -f '$<' -D -w 75 -b white -e StoreLogo.scale-150.png
 	inkscape -f '$<' -D -w 100 -b white -e StoreLogo.scale-200.png
 	inkscape -f '$<' -D -w 200 -b white -e StoreLogo.scale-400.png
+	inkscape -f '$<' --export-area=-135:45:560:381 -w 620 -e SplashScreen.scale-100.png
+	inkscape -f '$<' --export-area=-135:45:560:381 -w 775 -e SplashScreen.scale-125.png
+	inkscape -f '$<' --export-area=-135:45:560:381 -w 930 -e SplashScreen.scale-150.png
+	inkscape -f '$<' --export-area=-135:45:561:382 -w 620 -e SplashScreen.scale-200.png
+	inkscape -f '$<' --export-area=-135:45:561:382 -w 2480 -h 1200 -e SplashScreen.scale-400.png
