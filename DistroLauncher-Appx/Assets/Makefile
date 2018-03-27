@@ -6,7 +6,7 @@ all: wide large smalltile logo
 # roundel off-balance.
 wide: wide.svg
 	inkscape -f '$<' -C -w 310 -h 150 -e Wide310x150Logo.scale-100.png
-	inkscape -f '$<' -C -w 387 -h 187 -e Wide310x150Logo.scale-125.png
+	inkscape -f '$<' -C -w 388 -h 188 -e Wide310x150Logo.scale-125.png
 	inkscape -f '$<' -C -w 465 -h 225 -e Wide310x150Logo.scale-150.png
 	inkscape -f '$<' -C -w 620 -h 300 -e Wide310x150Logo.scale-200.png
 	inkscape -f '$<' -C -w 1240 -h 600 -e Wide310x150Logo.scale-400.png
@@ -15,7 +15,7 @@ wide: wide.svg
 # again logo recentered along the y-axis.
 large: large.svg
 	inkscape -f '$<' -C -w 310 -e LargeTile.scale-100.png
-	inkscape -f '$<' -C -w 387 -e LargeTile.scale-125.png
+	inkscape -f '$<' -C -w 388 -e LargeTile.scale-125.png
 	inkscape -f '$<' -C -w 465 -e LargeTile.scale-150.png
 	inkscape -f '$<' -C -w 620 -e LargeTile.scale-200.png
 	inkscape -f '$<' -C -w 1240 -e LargeTile.scale-400.png
@@ -23,12 +23,12 @@ large: large.svg
 # smalltile is simply cof_white-orange_hex.svg 
 smalltile: smalltile.svg
 	inkscape -f '$<' -C -w 71 -e SmallTile.scale-100.png
-	inkscape -f '$<' -C -w 88 -e SmallTile.scale-125.png
-	inkscape -f '$<' -C -w 106 -e SmallTile.scale-150.png
+	inkscape -f '$<' -C -w 89 -e SmallTile.scale-125.png
+	inkscape -f '$<' -C -w 107 -e SmallTile.scale-150.png
 	inkscape -f '$<' -C -w 142 -e SmallTile.scale-200.png
 	inkscape -f '$<' -C -w 284 -e SmallTile.scale-400.png
 	inkscape -f '$<' -C -w 150 -e Square150x150Logo.scale-100.png
-	inkscape -f '$<' -C -w 187 -e Square150x150Logo.scale-125.png
+	inkscape -f '$<' -C -w 188 -e Square150x150Logo.scale-125.png
 	inkscape -f '$<' -C -w 225 -e Square150x150Logo.scale-150.png
 	inkscape -f '$<' -C -w 300 -e Square150x150Logo.scale-200.png
 	inkscape -f '$<' -C -w 600 -e Square150x150Logo.scale-400.png
