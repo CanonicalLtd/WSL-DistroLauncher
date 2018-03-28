@@ -2,10 +2,12 @@
 //    Copyright (C) Microsoft.  All rights reserved.
 // Licensed under the terms described in the LICENSE file in the root of this project.
 //
+
 #include "stdafx.h"
 #include "WslApiLoader.h"
 
-WslApiLoader::WslApiLoader(PCWSTR distributionName) : _distributionName(distributionName)
+WslApiLoader::WslApiLoader(const std::wstring distributionName) :
+    _distributionName(distributionName)
 {
     _wslApiDll = LoadLibraryEx(L"wslapi.dll", nullptr, LOAD_LIBRARY_SEARCH_SYSTEM32);
     if (_wslApiDll != nullptr) {
@@ -39,9 +41,9 @@ BOOL WslApiLoader::WslIsDistributionRegistered()
     return _isDistributionRegistered(_distributionName.c_str());
 }
 
-HRESULT WslApiLoader::WslRegisterDistribution(PCWSTR tarGzFilename)
+HRESULT WslApiLoader::WslRegisterDistribution()
 {
-    HRESULT hr = _registerDistribution(_distributionName.c_str(), tarGzFilename);
+    HRESULT hr = _registerDistribution(_distributionName.c_str(), L"install.tar.gz");
     if (FAILED(hr)) {
         Helpers::PrintMessage(MSG_WSL_REGISTER_DISTRIBUTION_FAILED, hr);
     }

@@ -22,10 +22,10 @@
 #include <assert.h>
 #include <locale>
 #include <codecvt>
-
 #include <wslapi.h>
 #include "WslApiLoader.h"
-#include "helpers.hpp"
+#include "Helpers.h"
+#include "DistributionInfo.h"
 
-// Message strings compiled from .MC file
+// Message strings compiled from .MC file.
 #include "messages.h"

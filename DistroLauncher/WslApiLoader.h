@@ -2,8 +2,14 @@
 //    Copyright (C) Microsoft.  All rights reserved.
 // Licensed under the terms described in the LICENSE file in the root of this project.
 //
+
 #pragma once
 #include <wslapi.h>
+
+// This error definition is present in the Spring Creators Update SDK.
+#ifndef ERROR_LINUX_SUBSYSTEM_NOT_PRESENT
+#define ERROR_LINUX_SUBSYSTEM_NOT_PRESENT 414L
+#endif // !ERROR_LINUX_SUBSYSTEM_NOT_PRESENT
 
 typedef BOOL    (STDAPICALLTYPE* WSL_IS_DISTRIBUTION_REGISTERED)(PCWSTR);
 typedef HRESULT (STDAPICALLTYPE* WSL_REGISTER_DISTRIBUTION)(PCWSTR, PCWSTR);
@@ -15,14 +21,14 @@ typedef HRESULT (STDAPICALLTYPE* WSL_LAUNCH)(PCWSTR, PCWSTR, BOOL, HANDLE, HANDL
 class WslApiLoader
 {
   public:
-    WslApiLoader(PCWSTR distributionName);
+    WslApiLoader(const std::wstring distributionName);
     ~WslApiLoader();
 
     BOOL WslIsOptionalComponentInstalled();
 
     BOOL WslIsDistributionRegistered();
 
-    HRESULT WslRegisterDistribution(PCWSTR tarGzFilename);
+    HRESULT WslRegisterDistribution();
 
     HRESULT WslConfigureDistribution(ULONG defaultUID,
                                      WSL_DISTRIBUTION_FLAGS wslDistributionFlags);
