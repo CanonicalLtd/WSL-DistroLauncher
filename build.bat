@@ -66,9 +66,12 @@ shift
 goto :ARGS_LOOP
 
 :POST_ARGS_LOOP
-powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/Ubuntu.appxmanifest %VERSION% x64 DistroLauncher-Appx/x64/Ubuntu.appxmanifest
+mkdir DistroLauncher-Appx\x64
+powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/MyDistro.appxmanifest %VERSION% x64 DistroLauncher-Appx/x64/Ubuntu.appxmanifest
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=x64
-powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/Ubuntu.appxmanifest %VERSION% arm64 DistroLauncher-Appx/ARM64/Ubuntu.appxmanifest
+
+mkdir DistroLauncher-Appx\ARM64
+powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/MyDistro.appxmanifest %VERSION% arm64 DistroLauncher-Appx/ARM64/Ubuntu.appxmanifest
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=ARM64
 
 if (%ERRORLEVEL%) == (0) (
