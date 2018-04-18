@@ -1,6 +1,7 @@
 @echo off
 
 set _KEY=DistroLauncher-Appx\\Ubuntu_TemporaryKey
+set VERSION=1804.2018.328.0
 
 rem Add path to MSBuild Binaries
 set MSBUILD=()
@@ -65,7 +66,10 @@ shift
 goto :ARGS_LOOP
 
 :POST_ARGS_LOOP
+powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/Ubuntu.appxmanifest %VERSION% x64 DistroLauncher-Appx/x64/Ubuntu.appxmanifest
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=x64
+powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/Ubuntu.appxmanifest %VERSION% arm64 DistroLauncher-Appx/ARM64/Ubuntu.appxmanifest
+%MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=ARM64
 
 if (%ERRORLEVEL%) == (0) (
     echo.
