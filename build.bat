@@ -73,6 +73,8 @@ powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx
 mkdir DistroLauncher-Appx\ARM64
 powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/MyDistro.appxmanifest %VERSION% arm64 DistroLauncher-Appx/ARM64/Ubuntu.appxmanifest
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=ARM64
+echo "Updating ARM64 appx to fake ARM (32 bit) architecture for the store"
+powershell -File createARM64Package.ps1 AppPackages\Ubuntu\Ubuntu_%VERSION%_ARM64_Test\Ubuntu_%VERSION%_ARM64.appx %_KEY%.pfx
 
 if (%ERRORLEVEL%) == (0) (
     echo.
