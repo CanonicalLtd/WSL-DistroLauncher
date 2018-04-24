@@ -1,7 +1,7 @@
 @echo off
 
 set _KEY=DistroLauncher-Appx\\Ubuntu_TemporaryKey
-set VERSION=1804.2018.418.0
+set VERSION=1804.2018.424.0
 
 rem Add path to MSBuild Binaries
 set MSBUILD=()
