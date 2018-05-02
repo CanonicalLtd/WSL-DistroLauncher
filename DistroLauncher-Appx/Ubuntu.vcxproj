@@ -85,11 +85,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <AppxManifest Include="Ubuntu.appxmanifest">
+    <AppxManifest Include="$(Platform)/Ubuntu.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Ubuntu_TemporaryKey.pfx" />
-    <None Include="..\install.tar.gz">
+    <None Include="..\$(Platform)\install.tar.gz">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>
