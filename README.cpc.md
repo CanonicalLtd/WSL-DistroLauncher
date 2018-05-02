@@ -9,6 +9,8 @@ Forked from: https://github.com/CanonicalLtd/WSL-DistroLauncher
 The launcher has been branded with our name, text, logos etc.
 In the future we should also use our font, and our color scheme.
 
+To regenerate branding please run make from the top level directory.
+
 ## How to build
 
 Download:
