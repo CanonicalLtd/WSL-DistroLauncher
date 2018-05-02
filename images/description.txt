@@ -1,6 +1,8 @@
 Ubuntu on Windows allows one to use Ubuntu Terminal and run Ubuntu
 command line utilities including bash, ssh, git, apt and many more.
 
+Note that Windows 10 S does not support running this app.
+
 To use this feature, one first needs to use "Turn Windows features on
 or off" and select "Windows Subsystem for Linux", click OK, reboot,
 and use this app.
