@@ -13,12 +13,11 @@ To regenerate branding please run make from the top level directory.
 
 ## How to build
 
-Download:
-https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-root.tar.gz
-As 'install.tar.gz'
+Run:
+./create-wsl-app-install.tar.gz.sh <release> .
 
 Using Developer Console for VS (or cmd.exe) change into top level
-directory and execute "pkg" bat script. This should create Ubuntu.appx
+directory and execute build.bat script. This should create Ubuntu.appx
 
 - If a self-signed certificate for sideloading doen't exist, a new one
   will be created
@@ -52,7 +51,7 @@ directory and execute "pkg" bat script. This should create Ubuntu.appx
 
 To share the built app one needs to share the .appx and the .cer.
 
-.appmanifest should really be updated with version number bumped.
+build.bat should really be updated with version number bumped.
 
 Using appx on Ubuntu (fb-util-for-appx) results in packages that
 Windows rejects installing =( Therefore the code at
@@ -72,6 +71,3 @@ these restrictions is `RRRR.YYYY.MMDD.0`, where:
 - `MMDD` is the month and day of the serial (with any leading zeros removed).
 - As we only expect to publish a single appx per day, any sub-serial version
   numbers are dropped.
-
-When updating the version, one must update both the `_Version` value in
-`pkg.bat` and the `Identity.Version` value in `MyDistro.appxmanifest`.
