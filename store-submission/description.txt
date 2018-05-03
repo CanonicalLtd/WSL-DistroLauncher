@@ -1,0 +1,62 @@
+Ubuntu on Windows allows one to use Ubuntu Terminal and run Ubuntu command line utilities including bash, ssh, git, apt and many more.
+
+Note that Windows 10 S does not support running this app.
+
+Before installing Ubuntu on Windows or before the first run please open the Control Panel, visit Programs and Features' submenu Turn Windows features on or off and select Windows Subsystem for Linux. Click OK, reboot, and then your system is ready to run this app.
+
+Instead of the above steps You can set up your system by executing the following command in the Administrator PowerShell prompt:
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+When your system is ready simply start "ubuntu" in cmd.exe or launch Ubuntu from the start menu.
+
+This app installs the latest stable Ubuntu LTS release on Windows, switching to the newer LTS release with the first point release. If you would like to use a specific LTS release, for example 18.04, please install the release-specific app, Ubuntu 18.04 on Windows in that case.
+
+Please note that app updates don't change the Ubuntu installation. To upgrade to a new release please run do-release-upgrade in the Ubuntu Terminal.
+
+Features:
+Ubuntu
+bash
+ssh
+git
+apt
+dpkg
+
+Keyword:
+Ubuntu
+bash
+git
+ssh
+dpkg
+apt
+terminal
+
+Additional license terms:
+https://www.ubuntu.com/legal/terms-and-policies
+
+Website:
+https://www.ubuntu.com/
+
+Privacy policy URL:
+https://www.ubuntu.com/legal/terms-and-policies/privacy-policy
+
+Certification notes:
+
+
+
+1) Open PowerShell as Administrator
+2) Execute
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+3) Reboot
+NB! do not launch "bash"
+4) Install the app
+5) Use Start to launch "Ubuntu"
+6) Expected results:
+You should see message "Installing, this may take a few minutes..."
+Then prompt to setup unix account (use any ascii name / password)
+Then Ubuntu prompt will launch
+Try running a few commands e.g.:
+echo Hello World
+uname -a
+sudo apt update
+
+(Last command will prompt for the unix account password)
