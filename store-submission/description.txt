@@ -9,7 +9,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 When your system is ready simply start "ubuntu" in cmd.exe or launch Ubuntu from the start menu.
 
-This app installs the latest stable Ubuntu LTS release on Windows, switching to the newer LTS release with the first point release. If you would like to use a specific LTS release, for example 18.04, please install the release-specific app, Ubuntu 18.04 on Windows in that case.
+This app installs the Ubuntu 16.04 LTS release on Windows.
 
 Please note that app updates don't change the Ubuntu installation. To upgrade to a new release please run do-release-upgrade in the Ubuntu Terminal.
 
