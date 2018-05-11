@@ -39,6 +39,10 @@ https://www.ubuntu.com/
 Privacy policy URL:
 https://www.ubuntu.com/legal/terms-and-policies/privacy-policy
 
+Support contact info:
+https://askubuntu.com/
+
+
 Certification notes:
 
 
