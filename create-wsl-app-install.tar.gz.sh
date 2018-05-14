@@ -32,7 +32,7 @@ case $1 in
         done
         gpg --verify SHA256SUMS.gpg SHA256SUMS
         sha256sum -c SHA256SUMS 2>&1 | grep OK
-        sudo unsquashfs ${release}-server-cloudimg-amd64.squashfs && (cd squashfs-root/ && sudo tar -czf ../x64/install.tar.gz *) && sudo rm -rf squashfs-root
-        sudo unsquashfs ${release}-server-cloudimg-arm64.squashfs && (cd squashfs-root/ && sudo tar -czf ../ARM64/install.tar.gz *) && sudo rm -rf squashfs-root
+        fakeroot bash -c  "unsquashfs ${release}-server-cloudimg-amd64.squashfs && (cd squashfs-root/ && tar -czf ../x64/install.tar.gz *) && rm -rf squashfs-root"
+        fakeroot bash -c "unsquashfs ${release}-server-cloudimg-arm64.squashfs && (cd squashfs-root/ && tar -czf ../ARM64/install.tar.gz *) && rm -rf squashfs-root"
         rm ${release}-server-cloudimg-amd64.squashfs ${release}-server-cloudimg-arm64.squashfs
 esac
