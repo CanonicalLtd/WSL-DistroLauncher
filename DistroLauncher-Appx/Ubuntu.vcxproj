@@ -75,8 +75,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <PackageCertificateKeyFile>Ubuntu_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>DistroLauncher-Appx_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
@@ -88,8 +89,15 @@
     <AppxManifest Include="$(Platform)/Ubuntu.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Ubuntu_TemporaryKey.pfx" />
-    <None Include="..\$(Platform)\install.tar.gz">
+    <None Include="DistroLauncher-Appx_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)'=='x64'">
+    <None Include="..\x64\install.tar.gz">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)'=='ARM64'">
+    <None Include="..\ARM64\install.tar.gz">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>

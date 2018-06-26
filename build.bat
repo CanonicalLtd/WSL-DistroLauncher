@@ -1,6 +1,6 @@
 @echo off
 
-set _KEY=DistroLauncher-Appx\\Ubuntu_TemporaryKey
+set _KEY=DistroLauncher-Appx\\DistroLauncher-Appx_TemporaryKey
 set VERSION=1604.2018.510.0
 
 rem Add path to MSBuild Binaries
@@ -11,6 +11,14 @@ if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.
 )
 if exist "%ProgramFiles%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe" (
     set MSBUILD="%ProgramFiles%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\msbuild.exe"
+    goto :FOUND_MSBUILD
+)
+if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\msbuild.exe" (
+    set MSBUILD="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\msbuild.exe"
+    goto :FOUND_MSBUILD
+)
+if exist "%ProgramFiles%\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\msbuild.exe" (
+    set MSBUILD="%ProgramFiles%\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\msbuild.exe"
     goto :FOUND_MSBUILD
 )
 if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe" (
@@ -74,7 +82,7 @@ mkdir DistroLauncher-Appx\ARM64
 powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx/MyDistro.appxmanifest %VERSION% arm64 DistroLauncher-Appx/ARM64/Ubuntu.appxmanifest
 %MSBUILD% %~dp0\DistroLauncher.sln /t:%_MSBUILD_TARGET% /m /nr:true /p:Configuration=%_MSBUILD_CONFIG%;Platform=ARM64
 echo "Updating ARM64 appx to fake ARM (32 bit) architecture for the store"
-powershell -File createARM64Package.ps1 AppPackages\Ubuntu\Ubuntu_%VERSION%_ARM64_Test\Ubuntu_%VERSION%_ARM64.appx %_KEY%.pfx AppPackages\Ubuntu\Ubuntu_%VERSION%_ARM64_Test\Ubuntu_%VERSION%_arm.appx
+powershell -File createARM64Package.ps1 -appxPath AppPackages\Ubuntu\Ubuntu_%VERSION%_ARM64_Test\Ubuntu_%VERSION%_ARM64.appx -pfxFile %_KEY%.pfx -appxOutPath AppPackages\Ubuntu\Ubuntu_%VERSION%_ARM64_Test\Ubuntu_%VERSION%_ARM.appx
 
 if (%ERRORLEVEL%) == (0) (
     echo.
