@@ -150,7 +150,11 @@
     <AppxManifest Include="Ubuntu.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Ubuntu_TemporaryKey.pfx" />
-    <None Include="..\install.tar.gz" />
+    <None Include="DistroLauncher-Appx_TemporaryKey.pfx" />
+    <None Include="..\ARM64\install.tar.gz" />
+    <None Include="..\x64\install.tar.gz" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(targetname)" />
   </ItemGroup>
 </Project>
