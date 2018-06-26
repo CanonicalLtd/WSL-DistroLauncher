@@ -1,17 +1,21 @@
-# Update these two variables with the paths to the ARM64 appx and pfx file used to sign the app.
-$appxPath = $args[0]
-$pfxFile = $args[1]
-$outAppxPath = $args[2]
+# Update these variables with the paths to the ARM64 appx and pfx used to sign the app.
+param (
+    [string]$appxPath = "ARM64\Release\DistroLauncher-Appx\DistroLauncher-Appx_1.0.0.0_ARM64.appx",
+    [string]$pfxFile = "DistroLauncher-Appx\DistroLauncher-Appx_TemporaryKey.pfx",
+    [string]$appxOutPath = "ARM64\Release\DistroLauncher-Appx\DistroLauncher-Appx_1.0.0.0_ARM.appx"
+)
 
-# Replace arm64 processor architecture with arm to work around Microsoft Store ingestion issues.
-copy $appxPath .\archive.zip
-Expand-Archive .\archive.zip -DestinationPath extracted -Force
-(Get-Content .\extracted\AppxManifest.xml).replace('ProcessorArchitecture="arm64"', 'ProcessorArchitecture="arm"') | Set-Content .\extracted\AppxManifest.xml
+# Modify the appxmanifest to replace arm64 processor architecture with arm to work around Microsoft Store ingestion issues.
+$tempArchive = ".\archive.zip"
+$tempFolder = ".\extracted"
+Copy-Item $appxPath -Destination $tempArchive
+Expand-Archive $tempArchive -DestinationPath $tempFolder -Force
+(Get-Content $tempFolder\AppxManifest.xml).replace('ProcessorArchitecture="arm64"', 'ProcessorArchitecture="arm"') | Set-Content $tempFolder\AppxManifest.xml
 
 # Create and sign the appx.
-makeappx pack /d extracted /p $outAppxPath
-signtool sign /v /f $pfxFile /fd SHA256 $outAppxPath
+makeappx.exe pack /d extracted /p $appxOutPath
+signtool.exe sign /v /f $pfxFile /fd SHA256 $appxOutPath
 
-#Cleanup
-Remove-Item .\archive.zip
-Remove-Item .\extracted -Force -Recurse
+# Remove intermediate files.
+Remove-Item $tempArchive
+Remove-Item $tempFolder -Force -Recurse
