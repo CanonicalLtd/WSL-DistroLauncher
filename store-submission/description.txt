@@ -13,6 +13,8 @@ This app installs the latest stable Ubuntu LTS release on Windows, switching to 
 
 Please note that app updates don't change the Ubuntu installation. To upgrade to a new release please run do-release-upgrade in the Ubuntu Terminal.
 
+For more information about Windows Subsystem for Linux please visit: https://docs.microsoft.com/en-us/windows/wsl/about
+
 Features:
 Ubuntu
 bash
@@ -38,6 +40,10 @@ https://www.ubuntu.com/
 
 Privacy policy URL:
 https://www.ubuntu.com/legal/terms-and-policies/privacy-policy
+
+Support contact info:
+https://askubuntu.com/
+
 
 Certification notes:
 
