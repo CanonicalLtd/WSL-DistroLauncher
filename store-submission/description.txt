@@ -21,14 +21,15 @@ bash
 ssh
 git
 apt
-dpkg
+terminal
+Linux
 
 Keyword:
 Ubuntu
 bash
 git
 ssh
-dpkg
+Linux
 apt
 terminal
 
