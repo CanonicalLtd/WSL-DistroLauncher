@@ -43,6 +43,9 @@ case $release in
         ;;
     *) # bionic and later
         mkdir -p ../x64 ../ARM64
-        xzcat ${release}-server-cloudimg-amd64-root.tar.xz | gzip > ../x64/install.tar.gz
-        xzcat ${release}-server-cloudimg-arm64-root.tar.xz | gzip > ../ARM64/install.tar.gz
+        # repack tar to lose xattrs because they break app installation on Windows
+        mkdir root
+        fakeroot bash -c "cd root && tar -xf ../${release}-server-cloudimg-amd64-root.tar.xz && tar --no-xattrs -czf ../../x64/install.tar.gz *"
+        rm -rf root/*
+        fakeroot bash -c "cd root && tar -xf ../${release}-server-cloudimg-arm64-root.tar.xz && tar --no-xattrs -czf ../../ARM64/install.tar.gz *"
 esac
