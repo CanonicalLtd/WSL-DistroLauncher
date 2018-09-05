@@ -8,31 +8,44 @@ if [ -z "$2" ]; then
     echo " $0 <xenial|bionic> <target directory>"
     exit 1
 fi
-release=$1
-target=$2
 
-case $1 in
+release=$1
+target=$(readlink -f $2)
+
+mkdir -p $target
+tmp_dir=$(mktemp -d ${target}/get-tars-XXXXXX)
+trap "rm -r $tmp_dir" EXIT
+
+cd ${tmp_dir}
+for i in SHA256SUMS.gpg SHA256SUMS; do
+    wget https://cloud-images.ubuntu.com/${release}/current/$i
+done
+
+case $release in
     xenial)
-        mkdir -p ${target}/x64
-        cd ${target}
-        rm -f SHA256SUMS.gpg SHA256SUMS
-        for i in ${release}-server-cloudimg-amd64-root.tar.gz SHA256SUMS.gpg SHA256SUMS; do
-            wget -c https://cloud-images.ubuntu.com/${release}/current/$i
+        for arch in amd64; do
+            wget https://cloud-images.ubuntu.com/${release}/current/${release}-server-cloudimg-${arch}-root.tar.gz
         done
-        gpg --verify SHA256SUMS.gpg SHA256SUMS
-        sha256sum -c SHA256SUMS 2>&1 | grep OK
-        mv ${release}-server-cloudimg-amd64-root.tar.gz x64/install.tar.gz
         ;;
-    bionic)
-        mkdir -p ${target}/x64 ${target}/ARM64
-        cd ${target}
-        rm -f SHA256SUMS.gpg SHA256SUMS
-        for i in ${release}-server-cloudimg-amd64.squashfs ${release}-server-cloudimg-arm64.squashfs SHA256SUMS.gpg SHA256SUMS; do
-            wget -c https://cloud-images.ubuntu.com/${release}/current/$i
+    *) # bionic and later
+        for arch in amd64 arm64; do
+            wget https://cloud-images.ubuntu.com/${release}/current/${release}-server-cloudimg-${arch}-root.tar.xz
         done
-        gpg --verify SHA256SUMS.gpg SHA256SUMS
-        sha256sum -c SHA256SUMS 2>&1 | grep OK
-        fakeroot bash -c  "unsquashfs ${release}-server-cloudimg-amd64.squashfs && (cd squashfs-root/ && tar -czf ../x64/install.tar.gz *) && rm -rf squashfs-root"
-        fakeroot bash -c "unsquashfs ${release}-server-cloudimg-arm64.squashfs && (cd squashfs-root/ && tar -czf ../ARM64/install.tar.gz *) && rm -rf squashfs-root"
-        rm ${release}-server-cloudimg-amd64.squashfs ${release}-server-cloudimg-arm64.squashfs
+esac
+
+gpg --verify SHA256SUMS.gpg SHA256SUMS
+sha256sum -c SHA256SUMS 2>&1 | grep OK
+
+case $release in
+    xenial)
+        mkdir -p ../x64
+        mv ${release}-server-cloudimg-amd64-root.tar.gz ../x64/install.tar.gz
+        ;;
+    *) # bionic and later
+        mkdir -p ../x64 ../ARM64
+        # repack tar to lose xattrs because they break app installation on Windows
+        mkdir root
+        fakeroot bash -c "cd root && tar -xf ../${release}-server-cloudimg-amd64-root.tar.xz && tar --no-xattrs -czf ../../x64/install.tar.gz *"
+        rm -rf root/*
+        fakeroot bash -c "cd root && tar -xf ../${release}-server-cloudimg-arm64-root.tar.xz && tar --no-xattrs -czf ../../ARM64/install.tar.gz *"
 esac
