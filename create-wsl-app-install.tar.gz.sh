@@ -45,7 +45,8 @@ case $release in
         mkdir -p ../x64 ../ARM64
         # repack tar to lose some xattrs because they break app installation on Windows
         mkdir root
-        fakeroot bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-amd64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../x64/install.tar.gz *"
-        rm -rf root/*
-        fakeroot bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-arm64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../ARM64/install.tar.gz *"
+        sudo bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-amd64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../x64/install.tar.gz *"
+        sudo rm -rf root/*
+        sudo bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-arm64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../ARM64/install.tar.gz *"
+        sudo rm -rf root/*
 esac
