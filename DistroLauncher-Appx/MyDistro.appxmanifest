@@ -11,7 +11,7 @@
             Publisher="CN=23596F84-C3EA-4CD8-A7DF-550DCE37BCD0"
             ProcessorArchitecture="%Platform%" />
   <Properties>
-    <DisplayName>Ubuntu 16.04</DisplayName>
+    <DisplayName>Ubuntu 16.04 LTS</DisplayName>
     <PublisherDisplayName>Canonical Group Limited</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -28,8 +28,8 @@
 
   <Applications>
     <Application Id="ubuntu1604" Executable="ubuntu1604.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="Ubuntu 16.04" Description="Ubuntu 16.04 on Windows" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="#E95420">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Ubuntu 16.04" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
+      <uap:VisualElements DisplayName="Ubuntu 16.04 LTS" Description="Ubuntu 16.04 LTS on Windows" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="#E95420">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Ubuntu 16.04 LTS" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
           </uap:ShowNameOnTiles>
