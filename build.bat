@@ -1,7 +1,7 @@
 @echo off
 
 set _KEY=DistroLauncher-Appx\\DistroLauncher-Appx_TemporaryKey
-set VERSION=1804.2018.817.0
+set VERSION=1804.2019.204.0
 
 rem Add path to MSBuild Binaries
 set MSBUILD=()
