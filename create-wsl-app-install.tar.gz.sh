@@ -3,6 +3,18 @@
 # Prepare install.tar.gz-s for WSL app updates
 
 set -e
+
+arch_to_win_arch() {
+    case $1 in
+        amd64)
+            echo x64
+            ;;
+        arm64)
+            echo ARM64
+            ;;
+    esac
+}
+
 if [ -z "$2" ]; then
     echo "Usage:"
     echo " $0 <xenial|bionic> <target directory>"
@@ -11,42 +23,25 @@ fi
 
 release=$1
 target=$(readlink -f $2)
+base_url="https://partner-images.canonical.com/hyper-v/tmp/wsl"
 
 mkdir -p $target
 tmp_dir=$(mktemp -d ${target}/get-tars-XXXXXX)
 trap "rm -r $tmp_dir" EXIT
 
 cd ${tmp_dir}
-for i in SHA256SUMS.gpg SHA256SUMS; do
-    wget https://cloud-images.ubuntu.com/${release}/current/$i
+
+# TODO enable checking the signature when download location moves to https://cloud-images.ubuntu.com/
+for i in sha256sums; do
+    wget ${base_url}/${release}/current/$i
 done
+# gpg --verify SHA256SUMS.gpg SHA256SUMS
 
-case $release in
-    xenial)
-        for arch in amd64; do
-            wget https://cloud-images.ubuntu.com/${release}/current/${release}-server-cloudimg-${arch}-root.tar.gz
-        done
-        ;;
-    *) # bionic and later
-        for arch in amd64 arm64; do
-            wget https://cloud-images.ubuntu.com/${release}/current/${release}-server-cloudimg-${arch}-root.tar.xz
-        done
-esac
-
-gpg --verify SHA256SUMS.gpg SHA256SUMS
-sha256sum -c SHA256SUMS 2>&1 | grep OK
-
-case $release in
-    xenial)
-        mkdir -p ../x64
-        mv ${release}-server-cloudimg-amd64-root.tar.gz ../x64/install.tar.gz
-        ;;
-    *) # bionic and later
-        mkdir -p ../x64 ../ARM64
-        # repack tar to lose some xattrs because they break app installation on Windows
-        mkdir root
-        sudo bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-amd64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../x64/install.tar.gz *"
-        sudo rm -rf root/*
-        sudo bash -c "cd root && tar --xattrs-include='*' -xf ../${release}-server-cloudimg-arm64-root.tar.xz && setfattr -x system.posix_acl_access var/log/journal && setfattr -x system.posix_acl_default var/log/journal && tar --xattrs -czf ../../ARM64/install.tar.gz *"
-        sudo rm -rf root/*
-esac
+for arch in amd64 arm64; do
+    ! [ $release = "xenial" -a $arch = "arm64" ] || continue
+    wget ${base_url}/${release}/current/livecd.ubuntu-cpc.wsl.rootfs.${arch}.tar.gz
+    sha256sum -c sha256sums 2>&1 | grep OK
+    win_arch=$(arch_to_win_arch ${arch})
+    mkdir -p ../${win_arch}
+    mv livecd.ubuntu-cpc.wsl.rootfs.${arch}.tar.gz ../${win_arch}/install.tar.gz
+done
