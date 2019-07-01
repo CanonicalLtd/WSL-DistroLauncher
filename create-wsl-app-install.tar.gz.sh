@@ -3,36 +3,44 @@
 # Prepare install.tar.gz-s for WSL app updates
 
 set -e
+
+arch_to_win_arch() {
+    case $1 in
+        amd64)
+            echo x64
+            ;;
+        arm64)
+            echo ARM64
+            ;;
+    esac
+}
+
 if [ -z "$2" ]; then
     echo "Usage:"
     echo " $0 <xenial|bionic> <target directory>"
     exit 1
 fi
 release=$1
-target=$2
+target=$(readlink -f $2)
+base_url="https://partner-images.canonical.com/hyper-v/tmp/wsl"
 
-case $1 in
-    xenial)
-        mkdir -p ${target}/x64
-        cd ${target}
-        rm -f SHA256SUMS.gpg SHA256SUMS
-        for i in ${release}-server-cloudimg-amd64-root.tar.gz SHA256SUMS.gpg SHA256SUMS; do
-            wget -c https://cloud-images.ubuntu.com/${release}/current/$i
-        done
-        gpg --verify SHA256SUMS.gpg SHA256SUMS
-        sha256sum -c SHA256SUMS 2>&1 | grep OK
-        mv ${release}-server-cloudimg-amd64-root.tar.gz x64/install.tar.gz
-        ;;
-    bionic)
-        mkdir -p ${target}/x64 ${target}/ARM64
-        cd ${target}
-        rm -f SHA256SUMS.gpg SHA256SUMS
-        for i in ${release}-server-cloudimg-amd64.squashfs ${release}-server-cloudimg-arm64.squashfs SHA256SUMS.gpg SHA256SUMS; do
-            wget -c https://cloud-images.ubuntu.com/${release}/current/$i
-        done
-        gpg --verify SHA256SUMS.gpg SHA256SUMS
-        sha256sum -c SHA256SUMS 2>&1 | grep OK
-        fakeroot bash -c  "unsquashfs ${release}-server-cloudimg-amd64.squashfs && (cd squashfs-root/ && tar -czf ../x64/install.tar.gz *) && rm -rf squashfs-root"
-        fakeroot bash -c "unsquashfs ${release}-server-cloudimg-arm64.squashfs && (cd squashfs-root/ && tar -czf ../ARM64/install.tar.gz *) && rm -rf squashfs-root"
-        rm ${release}-server-cloudimg-amd64.squashfs ${release}-server-cloudimg-arm64.squashfs
-esac
+mkdir -p $target
+tmp_dir=$(mktemp -d ${target}/get-tars-XXXXXX)
+trap "rm -r $tmp_dir" EXIT
+
+cd ${tmp_dir}
+
+# TODO enable checking the signature when download location moves to https://cloud-images.ubuntu.com/
+for i in sha256sums; do
+    wget ${base_url}/${release}/current/$i
+done
+# gpg --verify SHA256SUMS.gpg SHA256SUMS
+
+for arch in amd64 arm64; do
+    ! [ $release = "xenial" -a $arch = "arm64" ] || continue
+    wget ${base_url}/${release}/current/livecd.ubuntu-cpc.wsl.rootfs.${arch}.tar.gz
+    sha256sum -c sha256sums 2>&1 | grep OK
+    win_arch=$(arch_to_win_arch ${arch})
+    mkdir -p ../${win_arch}
+    mv livecd.ubuntu-cpc.wsl.rootfs.${arch}.tar.gz ../${win_arch}/install.tar.gz
+done
