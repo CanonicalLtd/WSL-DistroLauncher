@@ -15,17 +15,17 @@ arch_to_win_arch() {
     esac
 }
 
-if [ -z "$2" ]; then
+if [ -z "$1" -o -n "$2" ]; then
     echo "Usage:"
-    echo " $0 <xenial|bionic> <target directory>"
+    echo " $0 <release>"
+    echo "Download latest tarballs for the release and save them in the"
+    echo "structure expected by the WSL app's build script."
     exit 1
 fi
 release=$1
-target=$(readlink -f $2)
 base_url="https://partner-images.canonical.com/hyper-v/tmp/wsl"
 
-mkdir -p $target
-tmp_dir=$(mktemp -d ${target}/get-tars-XXXXXX)
+tmp_dir=$(mktemp -d ${PWD}/get-tars-XXXXXX)
 trap "rm -r $tmp_dir" EXIT
 
 cd ${tmp_dir}
