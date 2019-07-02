@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Copyright (c) 2018-2019 Canonical
+# Author: Balint Reczey <rbalint@ubuntu.com>
+#
+# All rights reserved.
+
 # Prepare install.tar.gz-s for WSL app updates
 
 set -e
