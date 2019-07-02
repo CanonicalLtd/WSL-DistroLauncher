@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Copyright (c) 2018-2019 Canonical
+# Author: Balint Reczey <rbalint@ubuntu.com>
+#
+# All rights reserved.
+
 # Prepare USB image to be attached to a Windows System to build the app
 
 set -e
