@@ -20,8 +20,14 @@ large: large.svg
 	inkscape -f '$<' -C -w 620 -e LargeTile.scale-200.png
 	inkscape -f '$<' -C -w 1240 -e LargeTile.scale-400.png
 
-# smalltile is simply cof_white-orange_hex.svg 
-smalltile: smalltile.svg
+icon: cof_unplated.svg
+	inkscape -f '$<' -C -w 16 -e Square44x44Logo.targetsize-16_altform-unplated.png
+	inkscape -f '$<' -C -w 24 -e Square44x44Logo.targetsize-24_altform-unplated.png
+	inkscape -f '$<' -C -w 32 -e Square44x44Logo.targetsize-32_altform-unplated.png
+	inkscape -f '$<' -C -w 48 -e Square44x44Logo.targetsize-48_altform-unplated.png
+	inkscape -f '$<' -C -w 256 -e Square44x44Logo.targetsize-256_altform-unplated.png
+
+smalltile: cof_plated.svg
 	inkscape -f '$<' -C -w 71 -e SmallTile.scale-100.png
 	inkscape -f '$<' -C -w 89 -e SmallTile.scale-125.png
 	inkscape -f '$<' -C -w 107 -e SmallTile.scale-150.png
@@ -39,7 +45,7 @@ smalltile: smalltile.svg
 	inkscape -f '$<' -C -w 48 -e Square44x44Logo.targetsize-48.png
 	inkscape -f '$<' -C -w 256 -e Square44x44Logo.targetsize-256.png
 
-logo: cof_orange_hex.svg
+logo: cof_plated.svg
 	inkscape -f '$<' -C -w 44 -e Square44x44Logo.scale-100.png
 	inkscape -f '$<' -C -w 55 -e Square44x44Logo.scale-125.png
 	inkscape -f '$<' -C -w 66 -e Square44x44Logo.scale-150.png
