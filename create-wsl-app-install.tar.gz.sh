@@ -39,7 +39,7 @@ cd ${tmp_dir}
 for i in SHA256SUMS SHA256SUMS.gpg; do
     wget ${base_url}/${release}/current/$i
 done
-gpg --verify SHA256SUMS.gpg SHA256SUMS
+#gpg --verify SHA256SUMS.gpg SHA256SUMS
 
 for arch in amd64 arm64; do
     ! [ $release = "xenial" -a $arch = "arm64" ] || continue
