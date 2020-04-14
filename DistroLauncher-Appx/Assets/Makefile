@@ -1,4 +1,4 @@
-all: wide large small logo
+all: wide large small logo splash
 
 # wide.svg is ubuntu_white-orange(cof)_hex_su.svg with modified height
 # (increased) to match 310x150 aspect ratio, and then logo recentered
@@ -57,8 +57,13 @@ logo: cof_unplated.svg
 	inkscape -f '$<' -D -w 75 -b white -e StoreLogo.scale-150.png
 	inkscape -f '$<' -D -w 100 -b white -e StoreLogo.scale-200.png
 	inkscape -f '$<' -D -w 200 -b white -e StoreLogo.scale-400.png
-	inkscape -f '$<' --export-area=-135:45:560:381 -w 620 -e SplashScreen.scale-100.png
-	inkscape -f '$<' --export-area=-135:45:560:381 -w 775 -e SplashScreen.scale-125.png
-	inkscape -f '$<' --export-area=-135:45:560:381 -w 930 -e SplashScreen.scale-150.png
-	inkscape -f '$<' --export-area=-135:45:561:382 -w 620 -e SplashScreen.scale-200.png
-	inkscape -f '$<' --export-area=-135:45:561:382 -w 2480 -h 1200 -e SplashScreen.scale-400.png
+
+# cof_unplated.svg have a canvas of 256x256. In order to maintain the ratio for wide
+# splash screen, padding of 368 in the x-axis and 112 in the y-axis is added to 
+# matain the ratio of 31:15.
+splash: cof_unplated.svg
+	inkscape -f '$<' --export-area=-368:-112:624:368 -w 620 -e SplashScreen.scale-100.png
+	inkscape -f '$<' --export-area=-368:-112:624:368 -w 775 -e SplashScreen.scale-125.png
+	inkscape -f '$<' --export-area=-368:-112:624:368 -w 930 -e SplashScreen.scale-150.png
+	inkscape -f '$<' --export-area=-368:-112:624:368 -w 620 -e SplashScreen.scale-200.png
+	inkscape -f '$<' --export-area=-368:-112:624:368 -w 2480 -h 1200 -e SplashScreen.scale-400.png
