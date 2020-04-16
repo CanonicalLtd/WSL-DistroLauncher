@@ -20,12 +20,11 @@
     <Resource uap:Scale="200"/>
   </Resources>
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.16237.0" MaxVersionTested="10.0.16240.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.16215.0" MaxVersionTested="10.0.16240.0" />
   </Dependencies>
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
-
   <Applications>
     <Application Id="ubuntu" Executable="ubuntu.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements DisplayName="Ubuntu" Description="Ubuntu on Windows" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="#E95420">
@@ -34,6 +33,7 @@
             <uap:ShowOn Tile="square150x150Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
         <uap3:Extension Category="windows.appExecutionAlias" Executable="ubuntu.exe" EntryPoint="Windows.FullTrustApplication">
