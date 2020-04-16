@@ -25,7 +25,6 @@
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
-
   <Applications>
     <Application Id="ubuntu1604" Executable="ubuntu1604.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements DisplayName="Ubuntu 16.04 LTS" Description="Ubuntu 16.04 LTS on Windows" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="#E95420">
@@ -34,6 +33,7 @@
             <uap:ShowOn Tile="square150x150Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
         <uap3:Extension Category="windows.appExecutionAlias" Executable="ubuntu1604.exe" EntryPoint="Windows.FullTrustApplication">

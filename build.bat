@@ -1,7 +1,7 @@
 @echo off
 
-set _KEY=DistroLauncher-Appx\\DistroLauncher-Appx_TemporaryKey
-set VERSION=1604.2019.523.0
+set _KEY="DistroLauncher-Appx\DistroLauncher-Appx_TemporaryKey"
+set VERSION=1604.2020.416.0
 
 rem Add path to MSBuild Binaries
 set MSBUILD=()
@@ -29,12 +29,20 @@ if exist "%ProgramFiles%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bi
 	set MSBUILD="%ProgramFiles%\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe"
     goto :FOUND_MSBUILD
 )
+if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\MSBuild.exe" (
+    set MSBUILD="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Preview\MSBuild\Current\Bin\MSBuild.exe"
+    goto :FOUND_MSBUILD
+)
 if exist "%ProgramFiles(x86)%\MSBuild\14.0\bin" (
     set MSBUILD="%ProgramFiles(x86)%\MSBuild\14.0\bin\msbuild.exe"
     goto :FOUND_MSBUILD
 )
 if exist "%ProgramFiles%\MSBuild\14.0\bin" (
     set MSBUILD="%ProgramFiles%\MSBuild\14.0\bin\msbuild.exe"
+    goto :FOUND_MSBUILD
+)
+if exist "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin" (
+    set MSBUILD="%ProgramFiles(x86)%\Microsoft Visual Studio\2019\Community\MSBuild\Current\bin\msbuild.exe"
     goto :FOUND_MSBUILD
 )
 
@@ -80,8 +88,9 @@ powershell -File DistroLauncher-Appx/create_appxmainfest.ps1 DistroLauncher-Appx
 
 if (%ERRORLEVEL%) == (0) (
     echo.
-    echo Created appx in %~dp0x64\%_MSBUILD_CONFIG%\Ubuntu\
+    echo Created appx in %~dp0arm64\%_MSBUILD_CONFIG%\Ubuntu\
     echo.
 )
+
 
 :EXIT
