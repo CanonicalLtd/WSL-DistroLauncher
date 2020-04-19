@@ -19,6 +19,8 @@
 [Rr]eleases/
 x64/
 x86/
+ARM64/
+ARM/
 bld/
 [Bb]in/
 [Oo]bj/
